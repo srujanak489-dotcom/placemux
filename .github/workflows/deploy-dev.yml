@@ -3,15 +3,18 @@ name: Deploy to Dev
 on:
   push:
     branches:
-      - master
+      - staging
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Print Message
-        run: echo "Deploying PlaceMux to Dev Environment"
+      - name: Build Docker Image
+        run: docker build -t placemux-backend ./backend
+
+      - name: Deployment Message
+        run: echo "PlaceMux deployed to Dev Environment"
