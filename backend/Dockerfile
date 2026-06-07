@@ -1,21 +1,9 @@
-version: '3.8'
+FROM node:20-alpine
 
-services:
-  postgres:
-    image: postgres:16
+WORKDIR /app
 
-    container_name: placemux-postgres
+COPY . .
 
-    environment:
-      POSTGRES_USER: placemux
-      POSTGRES_PASSWORD: placemux123
-      POSTGRES_DB: placemuxdb
+EXPOSE 3000
 
-    ports:
-      - "5432:5432"
-
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
+CMD ["sh", "-c", "echo PlaceMux Backend Running"]
